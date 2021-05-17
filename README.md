@@ -1,5 +1,43 @@
 # snowflake-terraform-sv
 
+# Directory Structure
+
+* This sample support multiple environment (Snowflake account)
+* `env/dev` is for development environment specific configuration
+* `env/stg` is for staging environment specific configuration
+* `env/prd` is for production environment specific configuration
+* `moddules` is for shared modules
+
+```
+.
+├── README.md
+├── env
+│   ├── dev
+│   │   ├── main.tf
+│   │   ├── out.tfplan
+│   │   ├── provider.tf
+│   │   ├── rsa_key.p8
+│   │   └── rsa_key.pub
+│   ├── prd
+│   │   ├── main.tf
+│   │   ├── out.tfplan
+│   │   ├── provider.tf
+│   │   ├── rsa_key.p8
+│   │   └── rsa_key.pub
+│   └── stg
+│       ├── main.tf
+│       ├── out.tfplan
+│       ├── provider.tf
+│       ├── rsa_key.p8
+│       └── rsa_key.pub
+├── modules
+    ├── database.tf
+    ├── provider.tf
+    ├── schema.tf
+    ├── table.tf
+    └── view.tf
+```
+
 # Set up
 
 ## Install Terraform
@@ -40,9 +78,8 @@ CREATE USER TERRAFORM RSA_PUBLIC_KEY = "xxx";
 
 ```
 provider "snowflake" {
-  username         = "terraform"      // change me
-  account          = "do50920"        // change me
-  region           = "ap-southeast-1" // change me
+  username         = "terraform"
+  account          = "do50920.ap-southeast-1"        // change me
   private_key_path = "./rsa_key.p8"
   role             = "SYSADMIN"
 }
@@ -57,7 +94,7 @@ terraform {
   required_providers {
     snowflake = {
       source = "chanzuckerberg/snowflake"
-      version = "0.23.2"
+      version = "0.25.1"
     }
   }
 }
@@ -67,6 +104,7 @@ terraform {
 * See here for more about `terraform init` command. https://www.terraform.io/docs/cli/commands/init.html
 
 ```
+$ cd env/dev
 $ terraform init
 ```
 
