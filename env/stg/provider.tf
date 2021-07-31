@@ -7,6 +7,9 @@ terraform {
   }
 }
 
+# required environment variable
+#   SNOWFLAKE_ACCOUNT
+#   SNOWFLAKE_PASSWORD or SNOWFLAKE_PRIVATE_KEY_PATH
 provider "snowflake" {
   username         = "terraform"
   role             = "SYSADMIN"
