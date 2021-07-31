@@ -5,6 +5,11 @@ terraform {
       version = "0.25.13"
     }
   }
+  backend "s3" {
+    bucket = "yohei-test-snowflake-deployment"
+    key    = "stg/test"
+    region = "ap-southeast-1"
+  }
 }
 
 # required environment variable
