@@ -12,4 +12,10 @@ resource "snowflake_table" "test2" {
     name = "DATA"
     type = "VARCHAR(16777216)"
   }
+
+  column {
+    name = "EVENT_DATE"
+    type = "DATE"
+  }
+
 }
