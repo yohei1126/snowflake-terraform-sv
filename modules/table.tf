@@ -5,11 +5,11 @@ resource "snowflake_table" "test" {
 
   column {
     name = "ID"
-    type = "int"
+    type = "NUMBER(38,0)"
   }
 
   column {
     name = "DATA"
-    type = "text"
+    type = "VARCHAR(16777216)"
   }
 }
